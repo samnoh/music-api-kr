@@ -1,14 +1,14 @@
-const axios = require('axios')
-const cheerio = require('cheerio')
+import axios from 'axios'
+import cheerio from 'cheerio'
 
-exports.getData = () => {
+export const getData = () => {
   let dataArr = []
   return axios.get('https://www.genie.co.kr/chart/top200?rtm=Y&pg=1')
     .then(html => {
       let ulList = []
       const $ = cheerio.load(html.data)
       const $bodyList = $('div.music-list-wrap table tbody').children('tr')
-      $bodyList.each(function(i, elem) {
+      $bodyList.each(function (i, elem) {
         let updown = ''
         let updownVal = null
         if ($(this).find('td.number span span span').attr('class') == 'rank-up') {
@@ -16,7 +16,7 @@ exports.getData = () => {
           updownVal = $(this).find('td.number span span span.rank-up').first().contents()[0].data
         } else if ($(this).find('td.number span span span').attr('class') == 'rank-down') {
           updown = 'down'
-          updownVal =  $(this).find('td.number span span span.rank-down').first().contents()[0].data
+          updownVal = $(this).find('td.number span span span.rank-down').first().contents()[0].data
         } else {
           updown = 'static'
         }
@@ -41,7 +41,7 @@ exports.getData = () => {
       let ulList = []
       const $ = cheerio.load(html.data)
       const $bodyList = $('div.music-list-wrap table tbody').children('tr')
-      $bodyList.each(function(i, elem) {
+      $bodyList.each(function (i, elem) {
         let updown = ''
         let updownVal = null
         if ($(this).find('td.number span span span').attr('class') == 'rank-up') {
@@ -49,7 +49,7 @@ exports.getData = () => {
           updownVal = $(this).find('td.number span span span.rank-up').first().contents()[0].data
         } else if ($(this).find('td.number span span span').attr('class') == 'rank-down') {
           updown = 'down'
-          updownVal =  $(this).find('td.number span span span.rank-down').first().contents()[0].data
+          updownVal = $(this).find('td.number span span span.rank-down').first().contents()[0].data
         } else {
           updown = 'static'
         }
@@ -74,7 +74,7 @@ exports.getData = () => {
       let ulList = []
       const $ = cheerio.load(html.data)
       const $bodyList = $('div.music-list-wrap table tbody').children('tr')
-      $bodyList.each(function(i, elem) {
+      $bodyList.each(function (i, elem) {
         let updown = ''
         let updownVal = null
         if ($(this).find('td.number span span span').attr('class') == 'rank-up') {
@@ -82,7 +82,7 @@ exports.getData = () => {
           updownVal = $(this).find('td.number span span span.rank-up').first().contents()[0].data
         } else if ($(this).find('td.number span span span').attr('class') == 'rank-down') {
           updown = 'down'
-          updownVal =  $(this).find('td.number span span span.rank-down').first().contents()[0].data
+          updownVal = $(this).find('td.number span span span.rank-down').first().contents()[0].data
         } else {
           updown = 'static'
         }
@@ -107,7 +107,7 @@ exports.getData = () => {
       let ulList = []
       const $ = cheerio.load(html.data)
       const $bodyList = $('div.music-list-wrap table tbody').children('tr')
-      $bodyList.each(function(i, elem) {
+      $bodyList.each(function (i, elem) {
         let updown = ''
         let updownVal = null
         if ($(this).find('td.number span span span').attr('class') == 'rank-up') {
@@ -115,7 +115,7 @@ exports.getData = () => {
           updownVal = $(this).find('td.number span span span.rank-up').first().contents()[0].data
         } else if ($(this).find('td.number span span span').attr('class') == 'rank-down') {
           updown = 'down'
-          updownVal =  $(this).find('td.number span span span.rank-down').first().contents()[0].data
+          updownVal = $(this).find('td.number span span span.rank-down').first().contents()[0].data
         } else {
           updown = 'static'
         }
@@ -148,14 +148,14 @@ exports.getData = () => {
     })
 }
 
-exports.getDataExo = () => {
+export const getDataExo = () => {
   let dataArr = []
   return axios.get('https://www.genie.co.kr/chart/top200?rtm=Y&pg=1')
     .then(html => {
       let ulList = []
       const $ = cheerio.load(html.data)
       const $bodyList = $('div.music-list-wrap table tbody').children('tr')
-      $bodyList.each(function(i, elem) {
+      $bodyList.each(function (i, elem) {
         if ($(this).find('td.info a:nth-child(2)').text() == 'EXO') {
           let updown = ''
           let updownVal = null
@@ -164,7 +164,7 @@ exports.getDataExo = () => {
             updownVal = $(this).find('td.number span span span.rank-up').first().contents()[0].data
           } else if ($(this).find('td.number span span span').attr('class') == 'rank-down') {
             updown = 'down'
-            updownVal =  $(this).find('td.number span span span.rank-down').first().contents()[0].data
+            updownVal = $(this).find('td.number span span span.rank-down').first().contents()[0].data
           } else {
             updown = 'static'
           }
@@ -190,7 +190,7 @@ exports.getDataExo = () => {
       let ulList = []
       const $ = cheerio.load(html.data)
       const $bodyList = $('div.music-list-wrap table tbody').children('tr')
-      $bodyList.each(function(i, elem) {
+      $bodyList.each(function (i, elem) {
         if ($(this).find('td.info a:nth-child(2)').text() == 'EXO') {
           let updown = ''
           let updownVal = null
@@ -199,7 +199,7 @@ exports.getDataExo = () => {
             updownVal = $(this).find('td.number span span span.rank-up').first().contents()[0].data
           } else if ($(this).find('td.number span span span').attr('class') == 'rank-down') {
             updown = 'down'
-            updownVal =  $(this).find('td.number span span span.rank-down').first().contents()[0].data
+            updownVal = $(this).find('td.number span span span.rank-down').first().contents()[0].data
           } else {
             updown = 'static'
           }
@@ -225,7 +225,7 @@ exports.getDataExo = () => {
       let ulList = []
       const $ = cheerio.load(html.data)
       const $bodyList = $('div.music-list-wrap table tbody').children('tr')
-      $bodyList.each(function(i, elem) {
+      $bodyList.each(function (i, elem) {
         if ($(this).find('td.info a:nth-child(2)').text() == 'EXO') {
           let updown = ''
           let updownVal = null
@@ -234,7 +234,7 @@ exports.getDataExo = () => {
             updownVal = $(this).find('td.number span span span.rank-up').first().contents()[0].data
           } else if ($(this).find('td.number span span span').attr('class') == 'rank-down') {
             updown = 'down'
-            updownVal =  $(this).find('td.number span span span.rank-down').first().contents()[0].data
+            updownVal = $(this).find('td.number span span span.rank-down').first().contents()[0].data
           } else {
             updown = 'static'
           }
@@ -260,7 +260,7 @@ exports.getDataExo = () => {
       let ulList = []
       const $ = cheerio.load(html.data)
       const $bodyList = $('div.music-list-wrap table tbody').children('tr')
-      $bodyList.each(function(i, elem) {
+      $bodyList.each(function (i, elem) {
         if ($(this).find('td.info a:nth-child(2)').text() == 'EXO') {
           let updown = ''
           let updownVal = null
@@ -269,7 +269,7 @@ exports.getDataExo = () => {
             updownVal = $(this).find('td.number span span span.rank-up').first().contents()[0].data
           } else if ($(this).find('td.number span span span').attr('class') == 'rank-down') {
             updown = 'down'
-            updownVal =  $(this).find('td.number span span span.rank-down').first().contents()[0].data
+            updownVal = $(this).find('td.number span span span.rank-down').first().contents()[0].data
           } else {
             updown = 'static'
           }

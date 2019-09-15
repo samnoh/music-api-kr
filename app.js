@@ -1,17 +1,21 @@
-var express = require('express')
-var path = require('path')
-var cookieParser = require('cookie-parser')
-var http = require('http')
-var createError = require('http-errors')
-var logger = require('morgan')
-var cors = require('cors')
+import express from 'express'
+import path from 'path'
+import cookieParser from 'cookie-parser'
+import http from 'http'
+import createError from 'http-errors'
+import logger from 'morgan'
+import cors from 'cors'
+import dotenv from 'dotenv'
+dotenv.config()
 
-var app = express()
+import v1 from './routes/v1/v1'
+
+const app = express()
 
 app.set('port', process.env.PORT || 5000)
 
 http.createServer(app).listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Express server listening on port ' + app.get('port'))
 })
 
 app.use(logger('dev'))
@@ -26,7 +30,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(cors())
 
-const v1 = require('./routes/v1/v1')
 app.use('/v1', v1)
 
 app.use(function (req, res, next) {

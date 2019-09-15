@@ -1,14 +1,14 @@
-const axios = require('axios')
-const cheerio = require('cheerio')
+import axios from 'axios'
+import cheerio from 'cheerio'
 
-exports.getData = () => {
+export const getData = () => {
   let dataArr = []
   return axios.get('https://music.naver.com/listen/top100.nhn')
     .then(html => {
       let ulList = []
       const $ = cheerio.load(html.data)
       const $bodyList = $('div.tracklist_table table tbody').children('tr')
-      $bodyList.each(function(i, elem) {
+      $bodyList.each(function (i, elem) {
         let updown = ''
         let updownVal = null
         if ($(this).find('td.change span').attr('class') == 'up') {
@@ -39,7 +39,7 @@ exports.getData = () => {
       let ulList = []
       const $ = cheerio.load(html.data)
       const $bodyList = $('div.tracklist_table table tbody').children('tr')
-      $bodyList.each(function(i, elem) {
+      $bodyList.each(function (i, elem) {
         let updown = ''
         let updownVal = null
         if ($(this).find('td.change span').attr('class') == 'up') {
@@ -78,14 +78,14 @@ exports.getData = () => {
     })
 }
 
-exports.getDataExo = () => {
+export const getDataExo = () => {
   let dataArr = []
   return axios.get('https://music.naver.com/listen/top100.nhn')
     .then(html => {
       let ulList = []
       const $ = cheerio.load(html.data)
       const $bodyList = $('div.tracklist_table table tbody').children('tr')
-      $bodyList.each(function(i, elem) {
+      $bodyList.each(function (i, elem) {
         if ($(this).find('td div div div.rank02 a').first().text() == 'EXO') {
           let updown = ''
           let updownVal = null
@@ -118,7 +118,7 @@ exports.getDataExo = () => {
       let ulList = []
       const $ = cheerio.load(html.data)
       const $bodyList = $('div.tracklist_table table tbody').children('tr')
-      $bodyList.each(function(i, elem) {
+      $bodyList.each(function (i, elem) {
         if ($(this).find('td div div div.rank02 a').first().text() == 'EXO') {
           let updown = ''
           let updownVal = null

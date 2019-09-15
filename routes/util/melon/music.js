@@ -1,13 +1,13 @@
-const axios = require('axios')
-const cheerio = require('cheerio')
+import axios from 'axios'
+import cheerio from 'cheerio'
 
-exports.getData = () => {
+export const getData = () => {
   return axios.get('https://www.melon.com/chart/index.htm')
     .then(html => {
       let ulList = []
       const $ = cheerio.load(html.data)
       const $bodyList = $('div.service_list_song table tbody').children('tr')
-      $bodyList.each(function(i, elem) {
+      $bodyList.each(function (i, elem) {
         let updown = ''
         let updownVal = null
         if ($(this).find('td div span span').attr('class').split(' ')[1] == 'rank_up') {
@@ -43,13 +43,13 @@ exports.getData = () => {
     })
 }
 
-exports.getDataExo = () => {
+export const getDataExo = () => {
   return axios.get('https://www.melon.com/chart/index.htm')
     .then(html => {
       let ulList = []
       const $ = cheerio.load(html.data)
       const $bodyList = $('div.service_list_song table tbody').children('tr')
-      $bodyList.each(function(i, elem) {
+      $bodyList.each(function (i, elem) {
         if ($(this).find('td div div div.rank02 a').first().text() == 'EXO') {
           let updown = ''
           let updownVal = null
