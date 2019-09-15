@@ -1,6 +1,5 @@
 var express = require('express')
 var path = require('path')
-var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser')
 var http = require('http')
 var createError = require('http-errors')
@@ -12,20 +11,18 @@ var app = express()
 app.set('port', process.env.PORT || 5000)
 
 http.createServer(app).listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port'))
+  console.log('Express server listening on port ' + app.get('port'));
 })
 
 app.use(logger('dev'))
 app.use(express.json())
-app.use(express.urlencoded({
-  extended: false
-}))
+app.use(
+  express.urlencoded({
+    extended: false
+  })
+);
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-  extended: false
-}))
 
 app.use(cors())
 
@@ -34,11 +31,13 @@ app.use('/v1', v1)
 
 app.use(function (req, res, next) {
   // next(createError(404))
-  next(res.json({
-    code: 404,
-    v: 'v1',
-    status: 'ERR_NOTFOUND'
-  }))
+  next(
+    res.json({
+      code: 404,
+      v: 'v1',
+      status: 'ERR_NOTFOUND'
+    })
+  )
 })
 
 app.use(function (err, req, res, next) {
@@ -51,4 +50,4 @@ app.use(function (err, req, res, next) {
     v: 'v1',
     status: 'ERR_SERVER'
   })
-}) 
+})
